@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class _01_3Sum {
-
+    // source yt: https://youtu.be/xnGLVMOq_cI?si=8LaOoBlckZtd99C0
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         int n = nums.length;
