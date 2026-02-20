@@ -3,20 +3,20 @@ package _02Medium;
 public class _02KadanesAlgoMaxSumSubarray {
 
     public static int maxSubArray(int[] nums) {
-        int currentSum = nums[0];
-        int overAllSum = nums[0];
-
-        for (int i = 1; i < nums.length; i++) {
-            if (currentSum >= 0) {
-                currentSum += nums[i];
-            } else {
-                currentSum = nums[i];
+        int currentSum=nums[0];
+        int overallSum=nums[0];
+        for(int i=1;i<nums.length;i++){
+            if(currentSum>=0){
+                currentSum+=nums[i];
             }
-            if (currentSum > overAllSum) {
-                overAllSum = currentSum;
+            else{
+                currentSum=nums[i];
+            }
+            if(currentSum>overallSum){
+                overallSum=currentSum;
             }
         }
-        return overAllSum;
+        return overallSum;
     }
 
     public static void main(String[] args) {
