@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Preview Pro - With Code Formatter</title>
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .pro-container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        /* Header with Name */
+        .pro-header {
+            background: #0f172a;
+            color: white;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid #ffa116;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: #ffa116;
+            color: #0f172a;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .creator-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 161, 22, 0.3);
+        }
+
+        .creator-badge span {
+            color: #ffa116;
+            font-weight: 700;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 28px;
+            background: white;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-field {
+            margin-bottom: 16px;
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 13px;
+        }
+
+        .form-field input, .form-field textarea, .form-field select {
+            width: 100%;
+            padding: 10px 14px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: 'Fira Code', monospace;
+            transition: all 0.2s;
+        }
+
+        .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+            outline: none;
+            border-color: #ffa116;
+            background: white;
+        }
+
+        /* Examples Section - Flexible */
+        .examples-section {
+            grid-column: span 2;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-header h3 {
+            color: #1e293b;
+            font-size: 16px;
+        }
+
+        .btn-add {
+            background: #ffa116;
+            color: #0f172a;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-add:hover {
+            background: #f57f0a;
+            transform: scale(1.02);
+        }
+
+        .example-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .example-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #ffa116;
+            font-size: 14px;
+        }
+
+        .btn-remove {
+            background: #fee2e2;
+            color: #ef4444;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-remove:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .example-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-generate {
+            background: #ffa116;
+            color: #0f172a;
+            border: none;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 24px;
+            box-shadow: 0 10px 20px -5px rgba(255, 161, 22, 0.3);
+        }
+
+        .btn-generate:hover {
+            background: #f57f0a;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(255, 161, 22, 0.5);
+        }
+
+        /* Preview Fullscreen */
+        .preview-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #f0f2f5;
+            z-index: 9999;
+            display: none;
+        }
+
+        .preview-header {
+            background: #0f172a;
+            color: white;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid #ffa116;
+        }
+
+        .preview-brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .preview-brand .name {
+            color: #ffa116;
+            font-weight: 600;
+            font-size: 13px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 14px;
+            border-radius: 30px;
+        }
+
+        .preview-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .format-btn {
+            background: #ffa116;
+            color: #0f172a;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .format-btn:hover {
+            background: #f57f0a;
+            transform: scale(1.05);
+        }
+
+        .preview-exit {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .preview-exit:hover {
+            background: #ef4444;
+        }
+
+        /* Column View Toggle - Only 2 Options */
+        .column-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .column-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .column-btn:hover {
+            background: #ffa116;
+            color: #0f172a;
+            border-color: #ffa116;
+        }
+
+        .column-btn.active {
+            background: #ffa116;
+            color: #0f172a;
+            border-color: #ffa116;
+        }
+
+        /* Preview Content */
+        .preview-content {
+            width: 100vw;
+            height: calc(100vh - 55px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .preview-content .split-view {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+            background: #f0f2f5;
+        }
+
+        .preview-content .left-panel {
+            background: white;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid #e5e7eb;
+            min-width: 200px;
+            max-width: 80%;
+        }
+
+        .preview-content .problem-content {
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-content .problem-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 14px;
+        }
+
+        .preview-content .problem-desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+
+        .preview-content .example {
+            background: #f8fafc;
+            border-left: 4px solid #ffa116;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .preview-content .example pre {
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            color: #1f2937;
+            white-space: pre-wrap;
+        }
+
+        .preview-content .right-panel {
+            background: white;
+            height: 100%;
+            overflow: hidden;
+            min-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-content .solution-content {
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Code Block - Increased Height */
+        .preview-content .code-block {
+            background: #0d1117;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #30363d;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .preview-content .code-header {
+            background: #161b22;
+            padding: 12px 18px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-content .filename {
+            color: #8b949e;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .preview-content .java-tag {
+            background: #b07219;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .preview-content .code-body {
+            padding: 18px;
+            font-family: 'Fira Code', monospace;
+            overflow: auto;
+            flex: 1;
+            display: flex;
+            gap: 20px;
+            height: 100%;
+        }
+
+        /* Code Columns Container */
+        .code-columns {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .code-column {
+            flex: 1;
+            min-width: 0;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px dashed #30363d;
+            padding-right: 20px;
+        }
+
+        .code-column:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        /* Editable Code Area - With Better Formatting */
+        .code-editable {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            color: #e6edf3;
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            border: none;
+            outline: none;
+            resize: none;
+            white-space: pre !important;
+            overflow: auto !important;
+            tab-size: 4;
+            -moz-tab-size: 4;
+            padding: 0;
+        }
+
+        .code-editable::placeholder {
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        /* Complexity Row - Smaller */
+        .complexity-row {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 6px 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #e5e7eb;
+            width: fit-content;
+            margin-top: 0;
+            font-size: 11px;
+        }
+
+        .complexity-value {
+            background: white;
+            color: #111827;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid #d1d5db;
+            font-size: 10px;
+        }
+
+        .preview-content .footer {
+            background: #f8fafc;
+            border-top: 1px solid #e5e7eb;
+            padding: 8px 20px;
+            font-size: 11px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-content .split-divider {
+            width: 8px;
+            height: 100%;
+            background: #e1e4e8;
+            cursor: col-resize;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-content .split-divider:hover {
+            background: #ffa116;
+        }
+
+        .preview-content .split-divider::after {
+            content: "⋮⋮";
+            color: #64748b;
+            font-size: 16px;
+            transform: rotate(90deg);
+        }
+
+        /* Hide scrollbars */
+        ::-webkit-scrollbar { display: none; }
+        * { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body>
+    <div class="pro-container">
+        <!-- Header with Name -->
+        <div class="pro-header">
+            <div class="logo-area">
+                <div class="logo-icon">📋</div>
+                <div class="logo-text">LeetCode Preview</div>
+            </div>
+            <div class="creator-badge">
+                <span>Sahil Vishwakarma</span> ⚡
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <div class="form-grid">
+                <!-- Left Column -->
+                <div>
+                    <div class="form-field">
+                        <label>Problem ID</label>
+                        <input type="text" id="problemId" value="#15">
+                    </div>
+                    <div class="form-field">
+                        <label>Title</label>
+                        <input type="text" id="problemTitle" value="3Sum">
+                    </div>
+                    <div class="form-field">
+                        <label>Difficulty</label>
+                        <select id="difficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <div class="form-field">
+                        <label>Description</label>
+                        <textarea id="description" rows="3">Given an integer array &lt;code&gt;nums&lt;/code&gt;, return all triplets that sum to zero.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flexible Examples Section -->
+            <div class="examples-section">
+                <div class="section-header">
+                    <h3>📌 Examples</h3>
+                    <button class="btn-add" onclick="addExample()">➕ Add Example</button>
+                </div>
+                <div id="examplesContainer">
+                    <!-- Example 1 (Default) -->
+                    <div class="example-item" id="example-1">
+                        <div class="example-header">
+                            <span class="example-title">Example 1</span>
+                            <button class="btn-remove" onclick="removeExample(1)">✕</button>
+                        </div>
+                        <div class="example-content">
+                            <div class="form-field">
+                                <label>Input/Output</label>
+                                <textarea class="ex-input" id="ex1Input" rows="2">Input: [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]</textarea>
+                            </div>
+                            <div class="form-field">
+                                <label>Explanation (optional)</label>
+                                <textarea class="ex-explanation" id="ex1Explanation" rows="2">nums[0]+nums[1]+nums[2] = 0</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time & Space Complexity - Small Inputs -->
+            <div class="form-grid" style="margin-top: 16px;">
+                <div class="form-field">
+                    <label>Time Complexity</label>
+                    <input type="text" id="timeComplexity" value="O(n²)">
+                </div>
+                <div class="form-field">
+                    <label>Space Complexity</label>
+                    <input type="text" id="spaceComplexity" value="O(n)">
+                </div>
+                <div class="form-field">
+                    <label>Footer Tags</label>
+                    <input type="text" id="footerTags" value="15. 3Sum · Java · Two Pointers">
+                </div>
+                <div class="form-field">
+                    <label>Hashtags</label>
+                    <input type="text" id="hashtags" value="#LeetCode #Medium #3Sum">
+                </div>
+            </div>
+
+            <!-- NO JAVA CODE INPUT - Will be editable in preview -->
+            <p style="text-align: center; color: #ffa116; font-weight: 600; margin: 20px 0 10px;">✏️ Code will be editable in preview mode</p>
+
+            <button class="btn-generate" onclick="generatePreview()">✨ Generate Preview with Editable Code</button>
+        </div>
+    </div>
+
+    <!-- Preview Fullscreen -->
+    <div class="preview-fullscreen" id="previewFullscreen">
+        <div class="preview-header">
+            <div class="preview-brand">
+                <span>LeetCode Preview</span>
+                <span class="name">Sahil Vishwakarma</span>
+            </div>
+            <div class="preview-actions">
+                <button class="format-btn" onclick="formatCode()">
+                    <span>✨</span> Format Code
+                </button>
+                <div class="column-toggle">
+                    <button class="column-btn active" onclick="setColumns(1, this)">1 Column</button>
+                    <button class="column-btn" onclick="setColumns(2, this)">2 Columns</button>
+                </div>
+                <button class="preview-exit" onclick="closePreview()">
+                    <span>✕</span> Exit
+                </button>
+            </div>
+        </div>
+        <div id="previewContent"></div>
+    </div>
+
+    <script>
+        let exampleCount = 1;
+        let currentColumns = 1;
+
+        // Add Example
+        function addExample() {
+            exampleCount++;
+            const container = document.getElementById('examplesContainer');
+            const newExample = document.createElement('div');
+            newExample.className = 'example-item';
+            newExample.id = `example-${exampleCount}`;
+            newExample.innerHTML = `
+                <div class="example-header">
+                    <span class="example-title">Example ${exampleCount}</span>
+                    <button class="btn-remove" onclick="removeExample(${exampleCount})">✕</button>
+                </div>
+                <div class="example-content">
+                    <div class="form-field">
+                        <label>Input/Output</label>
+                        <textarea class="ex-input" id="ex${exampleCount}Input" rows="2">Input: [0,0,0]
+Output: [[0,0,0]]</textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>Explanation (optional)</label>
+                        <textarea class="ex-explanation" id="ex${exampleCount}Explanation" rows="2"></textarea>
+                    </div>
+                </div>
+            `;
+            container.appendChild(newExample);
+        }
+
+        // Remove Example
+        function removeExample(id) {
+            if (exampleCount > 1) {
+                const element = document.getElementById(`example-${id}`);
+                element.remove();
+                exampleCount--;
+                
+                // Renumber remaining examples
+                const examples = document.querySelectorAll('.example-item');
+                examples.forEach((ex, index) => {
+                    const title = ex.querySelector('.example-title');
+                    title.textContent = `Example ${index + 1}`;
+                    ex.id = `example-${index + 1}`;
+                    
+                    const removeBtn = ex.querySelector('.btn-remove');
+                    removeBtn.setAttribute('onclick', `removeExample(${index + 1})`);
+                });
+            }
+        }
+
+        // Format Code Function
+        function formatCode() {
+            const codeColumns = document.querySelectorAll('.code-editable');
+            
+            codeColumns.forEach(column => {
+                let code = column.value;
+                
+                // Basic Java formatting
+                code = code
+                    // Fix braces placement
+                    .replace(/\{/g, ' {\n    ')
+                    .replace(/\}/g, '\n}\n')
+                    // Add proper indentation after braces
+                    .replace(/\{\n    \}/g, '{}')
+                    // Fix spacing around operators
+                    .replace(/\s*=\s*/g, ' = ')
+                    .replace(/\s*\+\s*/g, ' + ')
+                    .replace(/\s*-\s*/g, ' - ')
+                    .replace(/\s*\*\s*/g, ' * ')
+                    .replace(/\s*\/\s*/g, ' / ')
+                    .replace(/\s*<\s*/g, ' < ')
+                    .replace(/\s*>\s*/g, ' > ')
+                    .replace(/\s*<=\s*/g, ' <= ')
+                    .replace(/\s*>=\s*/g, ' >= ')
+                    .replace(/\s*==\s*/g, ' == ')
+                    .replace(/\s*!=\s*/g, ' != ')
+                    .replace(/\s*&&\s*/g, ' && ')
+                    .replace(/\s*\|\|\s*/g, ' || ')
+                    // Fix commas
+                    .replace(/\s*,\s*/g, ', ')
+                    // Fix semicolons
+                    .replace(/\s*;\s*/g, ';\n    ')
+                    // Fix for loops
+                    .replace(/for\s*\(/g, 'for (')
+                    .replace(/while\s*\(/g, 'while (')
+                    .replace(/if\s*\(/g, 'if (')
+                    // Remove extra blank lines
+                    .replace(/\n\s*\n\s*\n/g, '\n\n')
+                    // Ensure proper indentation
+                    .split('\n').map(line => {
+                        let trimmed = line.trim();
+                        if (trimmed.startsWith('}') || trimmed.startsWith('} else')) {
+                            return line;
+                        }
+                        return line;
+                    }).join('\n');
+                
+                column.value = code;
+            });
+        }
+
+        // Set Columns (1 or 2 only)
+        function setColumns(cols, btn) {
+            currentColumns = cols;
+            document.querySelectorAll('.column-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Get current code from both columns and merge if needed
+            const codeColumns = document.querySelectorAll('.code-editable');
+            if (codeColumns.length > 0) {
+                let fullCode = '';
+                if (codeColumns.length === 2) {
+                    // Merge code from both columns
+                    fullCode = codeColumns[0].value + '\n' + codeColumns[1].value;
+                } else {
+                    fullCode = codeColumns[0].value;
+                }
+                
+                // Re-partition based on new column count
+                updateCodeColumns(fullCode, cols);
+            }
+        }
+
+        // Update code columns based on partition
+        function updateCodeColumns(code, columns) {
+            const codeBody = document.querySelector('.preview-content .code-body');
+            if (!codeBody) return;
+            
+            if (columns === 1) {
+                // Single column - show all code in one editor
+                codeBody.innerHTML = `
+                    <div class="code-columns">
+                        <div class="code-column">
+                            <textarea class="code-editable" placeholder="// Write your Java code here..." style="width: 100%; height: 100%;">${code}</textarea>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Two columns - split code approximately in half by lines
+                const lines = code.split('\n');
+                const midPoint = Math.ceil(lines.length / 2);
+                const firstPart = lines.slice(0, midPoint).join('\n');
+                const secondPart = lines.slice(midPoint).join('\n');
+                
+                codeBody.innerHTML = `
+                    <div class="code-columns">
+                        <div class="code-column">
+                            <textarea class="code-editable" placeholder="// Column 1 - Write your code..." style="width: 100%; height: 100%;">${firstPart}</textarea>
+                        </div>
+                        <div class="code-column">
+                            <textarea class="code-editable" placeholder="// Column 2 - Write your code..." style="width: 100%; height: 100%;">${secondPart}</textarea>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Generate Preview
+        function generatePreview() {
+            // Get basic values
+            const problemId = document.getElementById('problemId').value;
+            const problemTitle = document.getElementById('problemTitle').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const description = document.getElementById('description').value;
+            const timeComplexity = document.getElementById('timeComplexity').value;
+            const spaceComplexity = document.getElementById('spaceComplexity').value;
+            const footerTags = document.getElementById('footerTags').value;
+            const hashtags = document.getElementById('hashtags').value;
+
+            // Get all examples
+            const examples = [];
+            const exampleItems = document.querySelectorAll('.example-item');
+            exampleItems.forEach((item, index) => {
+                const input = item.querySelector('.ex-input')?.value || '';
+                const explanation = item.querySelector('.ex-explanation')?.value || '';
+                examples.push({ input, explanation });
+            });
+
+            // Generate examples HTML
+            let examplesHTML = '';
+            examples.forEach((ex, i) => {
+                examplesHTML += `
+                    <div class="example">
+                        <pre>${ex.input}</pre>
+                        ${ex.explanation ? `<pre style="margin-top: 6px; color: #4b5563;">${ex.explanation}</pre>` : ''}
+                    </div>
+                `;
+            });
+
+            // Default sample code for editable area (properly formatted)
+            const sampleCode = `import java.util.*;
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            
+            int left = i + 1;
+            int right = nums.length - 1;
+            
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+                
+                if (sum == 0) {
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    while (left < right && nums[right] == nums[right - 1]) right--;
+                    left++;
+                    right--;
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+        return result;
+    }
+}`;
+
+            // Create preview with editable code (single column by default)
+            const previewHTML = `
+                <div class="preview-content">
+                    <div class="split-view" id="splitView">
+                        <div class="left-panel" id="leftPanel" style="width: 30%;">
+                            <div class="problem-content">
+                                <div class="problem-title">${problemId.replace('#', '')}. ${problemTitle}</div>
+                                <div class="problem-desc">${description}</div>
+                                <div class="examples">
+                                    ${examplesHTML}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="split-divider" id="divider"></div>
+                        <div class="right-panel" id="rightPanel" style="width: 70%;">
+                            <div class="solution-content">
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="filename">📄 Solution.java (Editable)</span>
+                                        <span class="java-tag">JAVA</span>
+                                    </div>
+                                    <div class="code-body">
+                                        <div class="code-columns">
+                                            <div class="code-column">
+                                                <textarea class="code-editable" placeholder="// Write your Java code here..." style="width: 100%; height: 100%;">${sampleCode}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="complexity-row">
+                                    <span>⏱️ <span class="complexity-value">${timeComplexity}</span></span>
+                                    <span>💾 <span class="complexity-value">${spaceComplexity}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <span>${footerTags}</span>
+                        <span class="hashtags">${hashtags}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('previewContent').innerHTML = previewHTML;
+            document.getElementById('previewFullscreen').style.display = 'block';
+            
+            // Reset column buttons
+            document.querySelectorAll('.column-btn').forEach((btn, index) => {
+                if (index === 0) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            currentColumns = 1;
+            
+            setTimeout(initDragging, 100);
+        }
+
+        // Dragging functionality
+        function initDragging() {
+            const splitView = document.getElementById('splitView');
+            const leftPanel = document.getElementById('leftPanel');
+            const rightPanel = document.getElementById('rightPanel');
+            const divider = document.getElementById('divider');
+            
+            if (!splitView || !leftPanel || !rightPanel || !divider) return;
+            
+            let isDragging = false;
+            let startX, startLeftWidth;
+
+            divider.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                const leftWidth = leftPanel.getBoundingClientRect().width;
+                const totalWidth = splitView.getBoundingClientRect().width;
+                startLeftWidth = (leftWidth / totalWidth) * 100;
+                document.body.style.cursor = 'col-resize';
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                
+                const totalWidth = splitView.getBoundingClientRect().width;
+                const deltaX = e.clientX - startX;
+                let newLeftWidth = startLeftWidth + (deltaX / totalWidth) * 100;
+                
+                if (newLeftWidth < 20) newLeftWidth = 20;
+                if (newLeftWidth > 50) newLeftWidth = 50;
+                
+                leftPanel.style.width = newLeftWidth + '%';
+                rightPanel.style.width = (100 - newLeftWidth) + '%';
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                document.body.style.cursor = 'default';
+            });
+        }
+
+        // Close preview
+        function closePreview() {
+            document.getElementById('previewFullscreen').style.display = 'none';
+        }
+
+        // ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePreview();
+        });
+    </script>
+</body>
+</html>
