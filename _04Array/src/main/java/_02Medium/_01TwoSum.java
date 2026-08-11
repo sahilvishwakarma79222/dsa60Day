@@ -21,11 +21,7 @@ public class _01TwoSum {
     }
 
     public static void main(String[] args) {
-        int[] nums={2,7,11,15};
-        int[] ints = twoSum(nums, 9);
-        for(int n:ints){
-            System.out.print(n+" ");
-        }
+    System.out.println("hello");
 
     }
 }
