@@ -1,27 +1,40 @@
 package _02Medium;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class _01TwoSum {
 
-    public static int[] twoSum(int[] nums, int target) {
-
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int check = target - nums[i];
-
-            if (map.containsKey(check)) {
-                return new int[]{map.get(check), i};
-            } else {
-                map.put(nums[i], i);
-            }
-        }
-        return new int[]{-1, -1};
-    }
-
     public static void main(String[] args) {
-    System.out.println("hello");
-
+        int[] arr = {5, 1, 4, 2, 8};
+        bubbleSort(arr);
+        print(arr);
     }
+
+
+    public static void bubbleSort(int[] arr){
+        int n=arr.length;
+        boolean swapped;
+        for(int i=0;i<n-1;i++){
+             swapped=false;
+
+            for(int j=0;j<n-i-1;j++){
+                if(arr[j]>arr[j+1]){
+                int temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+                swapped=true;
+                }
+            }
+            if(!swapped)break;
+        }
+    }
+
+    public static void print(int[] nums){
+        for(int n:nums){
+            System.out.print(n+" ");
+        }
+    }
+
+
+
+
 }
