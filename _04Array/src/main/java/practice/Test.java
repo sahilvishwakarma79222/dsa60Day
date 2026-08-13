@@ -1,38 +1,39 @@
 package practice;
 
 public class Test {
+    // selection sort
 
 
     public static void main(String[] args) {
-
-        int[] nums={2,3,5,76,8,4,3,2};
+        int[] nums={3,4,5,2,3,8,9,12,223,34,43,32,2,1};
         print(nums);
-        System.out.println("========================");
-        bubbleSort(nums);
+        System.out.println("======================================");
+        selectionSort(nums);
         print(nums);
     }
-
-
-    public static void bubbleSort(int[] nums){
-        int n=nums.length;
-        boolean swapped;
-        for(int i=0;i<n-1;i++){
-            swapped=false;
-            for(int j=0;j<n-i-1;j++){
-                if(nums[j]>nums[j+1]){
-                    int temp=nums[j];
-                    nums[j]=nums[j+1];
-                    nums[j+1]=temp;
-                    swapped=true;
+//    min index dekho and swap kro .
+    public static void selectionSort(int[] nums){
+        for(int i=0;i<nums.length;i++){
+            int minindex=i;
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[j]<nums[minindex]){
+                    minindex=j;
                 }
             }
-            if(!swapped)break;
+            // swap with min index
+            int temp=nums[i];
+            nums[i]=nums[minindex];
+            nums[minindex]=temp;
         }
     }
 
-    public static void print(int[] nums){
+    public static void  print(int[] nums){
         for(int n:nums){
             System.out.print(n+" ");
         }
+
     }
+
+
+
 }
