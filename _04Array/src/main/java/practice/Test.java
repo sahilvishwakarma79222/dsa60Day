@@ -1,39 +1,35 @@
 package practice;
 
 public class Test {
-    // selection sort
+    // Insertion sort
 
 
     public static void main(String[] args) {
-        int[] nums={3,4,5,2,3,8,9,12,223,34,43,32,2,1};
+        int[] nums={5,6,4,3,5,87,9,7,5,3,2};
         print(nums);
-        System.out.println("======================================");
-        selectionSort(nums);
+        System.out.println("=============================");
+        insertionSort(nums);
         print(nums);
+
+
     }
-//    min index dekho and swap kro .
-    public static void selectionSort(int[] nums){
-        for(int i=0;i<nums.length;i++){
-            int minindex=i;
-            for(int j=i+1;j<nums.length;j++){
-                if(nums[j]<nums[minindex]){
-                    minindex=j;
+        public static void insertionSort(int[] nums){
+
+            for(int i=1;i<nums.length;i++){
+
+                int j=i;
+                while(j>0 && nums[j]<nums[j-1]){
+                    int temp=nums[j];
+                    nums[j]=nums[j-1];
+                    nums[j-1]=temp;
+                    j--;
                 }
             }
-            // swap with min index
-            int temp=nums[i];
-            nums[i]=nums[minindex];
-            nums[minindex]=temp;
         }
-    }
 
-    public static void  print(int[] nums){
+        public static void print(int[] nums){
         for(int n:nums){
             System.out.print(n+" ");
         }
-
-    }
-
-
-
+        }
 }
